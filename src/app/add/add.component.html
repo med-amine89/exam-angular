@@ -1,0 +1,33 @@
+<div class="container">
+    
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      
+          <!-- Titre -->
+         <div class="form-group">
+          <label for="nom">Titre</label>
+          <input type="text" class="form-control" id="nom" formControlName="titre">
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+          <label for="bio">Description</label>
+          <textarea class="form-control" id="bio" formControlName="description"></textarea>
+        </div>
+
+        <!-- Categorie -->
+        <div class="form-group">
+            <label for="selection">Categorie</label>
+            <select id="selection" class="form-control" formControlName="categorie">
+              <option value="">Liste de choix...</option>
+                <option value="economie">Economie</option>
+                <option value="technologie">Technologies</option>
+                <option value="sport">Sport</option>
+                <option value="societe">Societe</option>
+                <option value="culture">Culture</option>
+            </select>
+          </div>
+
+          <button class="btn btn-success" type="submit">Add</button>
+      
+    </form>
+</div>
