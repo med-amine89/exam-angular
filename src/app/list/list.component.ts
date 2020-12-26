@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -8,24 +8,26 @@ import { Router} from '@angular/router';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  
 
- 
 
-  constructor(private _authService : AuthService, private router: Router) { }
+
+
+  constructor(private _authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   users = this._authService.storageData();
-  
- delete(index){
-  this.users.splice(index,1);
-  localStorage.setItem('users', JSON.stringify(this.users));
- }
 
- edit(user){
-   this.router.navigate(['/update', user.id]);
- }
+  // navigation vers update
+  edit(user) {
+    this.router.navigate(['/update', user.id]);
+  }
+  
+  // fonction delete
+  delete(i) {
+    this._authService.delete(i)
+  }
+
 
 }

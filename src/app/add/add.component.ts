@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Router} from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 
@@ -14,16 +14,16 @@ export class AddComponent implements OnInit {
   registrationForm: FormGroup;
   submited: boolean = false;
 
-  constructor(private authservice : AuthService,
+  constructor(private authservice: AuthService,
     private router: Router,
     private http: HttpClient) { }
 
   ngOnInit(): void {
     this.registrationForm = new FormGroup({
-      titre: new FormControl(''),
-      description: new FormControl(''),
-      categorie: new FormControl('')
-  
+      titre: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      categorie: new FormControl('', [Validators.required])
+
     });
   }
 
@@ -33,7 +33,8 @@ export class AddComponent implements OnInit {
     if (this.registrationForm.value.invalid) {
       return;
     }
-    
+
+    // afficher les donnes localstorage dans list component
     this.authservice.localStorageFn(this.registrationForm.value)
 
   }

@@ -12,6 +12,7 @@ import { UpdateComponent } from './update/update.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './auth.service';
+import { P404Component } from './p404/p404.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AuthService } from './auth.service';
     ListComponent,
     AddComponent,
     UpdateComponent,
-    NavbarComponent
+    NavbarComponent,
+    P404Component
   ],
   imports: [
     BrowserModule,

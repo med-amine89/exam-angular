@@ -1,33 +1,51 @@
 <div class="container">
-    
-    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-      
-          <!-- Titre -->
-         <div class="form-group">
-          <label for="nom">Titre</label>
-          <input type="text" class="form-control" id="nom" formControlName="titre">
+
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+    <!-- Titre -->
+    <div class="form-group">
+      <label for="nom">Titre</label>
+      <input [ngClass]="{'is-invalid': submited && registrationForm.get('titre').errors, 
+          'is-valid': submited && !registrationForm.get('titre').errors}" type="text" class="form-control" id="nom"
+        formControlName="titre">
+      <div *ngIf="registrationForm.get('titre').invalid && registrationForm.get('titre').touched">
+        <small *ngIf="registrationForm.get('titre').errors?.required" class="text-danger">Titre is
+          required</small>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label for="bio">Description</label>
+      <textarea [ngClass]="{'is-invalid': submited && registrationForm.get('description').errors, 
+          'is-valid': submited && !registrationForm.get('description').errors}" class="form-control" id="bio"
+        formControlName="description"></textarea>
+      <div *ngIf="registrationForm.get('description').invalid && registrationForm.get('description').touched">
+        <small *ngIf="registrationForm.get('description').errors?.required" class="text-danger">Titre is
+          required</small>
+      </div>
+    </div>
+
+    <!-- Categorie -->
+    <div class="form-group">
+      <label for="selection">Categorie</label>
+      <select [ngClass]="{'is-invalid': submited && registrationForm.get('categorie').errors, 
+            'is-valid': submited && !registrationForm.get('categorie').errors}" id="selection" class="form-control"
+        formControlName="categorie">
+        <div *ngIf="registrationForm.get('categorie').invalid && registrationForm.get('categorie').touched">
+          <small *ngIf="registrationForm.get('categorie').errors?.required" class="text-danger">Titre is
+            required</small>
         </div>
+        <option value="">Liste de choix...</option>
+        <option value="economie">Economie</option>
+        <option value="technologie">Technologies</option>
+        <option value="sport">Sport</option>
+        <option value="societe">Societe</option>
+        <option value="culture">Culture</option>
+      </select>
+    </div>
 
-        <!-- Description -->
-        <div class="form-group">
-          <label for="bio">Description</label>
-          <textarea class="form-control" id="bio" formControlName="description"></textarea>
-        </div>
+    <button class="btn btn-success" type="submit">Add</button>
 
-        <!-- Categorie -->
-        <div class="form-group">
-            <label for="selection">Categorie</label>
-            <select id="selection" class="form-control" formControlName="categorie">
-              <option value="">Liste de choix...</option>
-                <option value="economie">Economie</option>
-                <option value="technologie">Technologies</option>
-                <option value="sport">Sport</option>
-                <option value="societe">Societe</option>
-                <option value="culture">Culture</option>
-            </select>
-          </div>
-
-          <button class="btn btn-success" type="submit">Add</button>
-      
-    </form>
+  </form>
 </div>
